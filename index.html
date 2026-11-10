@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enfeite sua Árvore!</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2canvas para tirar captura de tela da árvore decorada -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        nunito: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        wood: '#5c3d2e',
+                        grass: '#4e7037',
+                        btnGreen: '#618037',
+                        btnGreenHover: '#4f6b2b',
+                        fDark: '#1e1e1e',
+                        fCard: '#2d2d2d',
+                    }
+                }
+            }
+        }
+    </script>
+   
+</head>
+<body class="font-nunito bg-[#1a1a1a] text-gray-100">
+
+    <!-- CONTÊINER PRINCIPAL DO APLICATIVO -->
+    <!-- <div class="w-full max-w-[1280px] min-h-screen md:min-h-[720px] flex flex-col justify-between relative overflow-hidden bg-[#1a1a1a]"> -->
+
+        <!-- ========================================== -->
+        <!-- ESTÁGIO 1: INÍCIO (Tela de Boas-vindas / Início)    -->
+        <!-- ========================================== -->
+        <div id="stage-1" class="relative w-full flex-1 flex flex-col justify-between items-center overflow-hidden transition-all duration-500">
+            <!--Fundo -->
+            <div class="absolute inset-0 z-0 flex flex-col">
+                <div class="h-[65%] w-full bg-gradient-to-b from-[#6b7c85] via-[#85959e] to-[#99a6ad]"></div>
+                <div class="h-[35%] w-full bg-[#46612b] border-t-8 border-[#3d5425]"></div> 
+            </div>
+ <img src="nuvem 2.png" alt="Nuvem de Fundo" class="nuven">
+            <!-- Título -->
+            <div class="relative z-10 pt-6 px-4 flex justify-center w-full  ">
+                <div class="centralizarn">
+                    
+                    <h1  class ="texto" >Enfeite sua árvore! </h1>
+                  
+                </div>
+            </div>
+
+            <!-- Gráfico Central da Árvore -->
+            <div class="relative z-10 flex-1 flex items-center justify-center py-4">
+                <div class="w-[280px] sm:w-[360px] md:w-[440px] lg:w-[480px] transition-transform hover:scale-105 duration-300">
+                    <!-- Gráfico SVG Nítido da Árvore -->
+                    <svg viewBox="0 0 500 600" class="w-full h-auto drop-shadow-2xl">
+                        <!-- Tronco -->
+                        <path d="M220,440 L280,440 L295,570 C295,580 270,590 250,590 C230,590 205,580 205,570 Z" fill="#5A3A22" stroke="#3D2514" stroke-width="6" />
+                        <path d="M230,440 L240,580 M260,440 L265,585" stroke="#422917" stroke-width="4" stroke-linecap="round"/>
+                        <!-- Camada Externa da Folhagem -->
+                        <path d="M250,30 
+                                 C310,30 360,70 380,120 
+                                 C430,130 470,180 470,240 
+                                 C470,290 440,330 410,350 
+                                 C440,380 440,430 400,460 
+                                 C360,490 300,480 250,480 
+                                 C200,480 140,490 100,460 
+                                 C60,430 60,380 90,350 
+                                 C60,330 30,290 30,240 
+                                 C30,180 70,130 120,120 
+                                 C140,70 190,30 250,30 Z" fill="#4B7A2B" stroke="#32531B" stroke-width="8" />
+                        <!-- Destaques Internos da Folhagem -->
+                        <path d="M250,45 C195,45 155,80 140,125 C95,135 60,180 60,235 C60,280 85,315 115,335 C88,360 88,405 120,430 C155,455 205,445 250,445 C295,445 345,455 380,430 C412,405 412,360 385,335 C415,315 440,280 440,235 C440,180 405,135 360,125 C345,80 305,45 250,45 Z" fill="#5B9335" />
+                        <!-- Aglomerados de Destaque da Folhagem Superior -->
+                        <circle cx="210" cy="120" r="45" fill="#6ba93e" />
+                        <circle cx="290" cy="130" r="50" fill="#6ba93e" />
+                        <circle cx="160" cy="220" r="55" fill="#6ba93e" />
+                        <circle cx="340" cy="210" r="60" fill="#6ba93e" />
+                        <circle cx="250" cy="260" r="75" fill="#6ba93e" />
+                        <circle cx="170" cy="350" r="65" fill="#6ba93e" />
+                        <circle cx="330" cy="350" r="70" fill="#6ba93e" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Área de Interação Inferior: Botão e Mascote Amigável -->
+            <div class="relative z-10 w-full max-w-4xl px-6 pb-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                
+                <!-- Botão Iniciar (Centralizado/Esquerda) -->
+                <div class="w-full md:w-auto flex justify-center md:justify-start flex-1">
+                    <button onclick="goToStage(2)" class="w-full sm:w-80 bg-gradient-to-b from-[#7a9d43] to-[#55732a] hover:from-[#8ab04c] hover:to-[#618330] text-white font-fredoka text-2xl md:text-3xl px-8 py-4 rounded-3xl border-4 border-[#3c521d] shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 tracking-wider flex items-center justify-center gap-3 group cursor-pointer">
+                        <span>Começar</span>
+                        <i class="fa-solid fa-play text-xl group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+
+               
+                    <!-- Balão de Fala -->
+                     <div class="relative bg-white text-gray-800 font-bold px-4 py-3 rounded-2xl shadow-lg border-2 border-gray-200 text-sm md:text-base max-w-[180px] sm:max-w-[220px]"> 
+                        <span>Enfeite a árvore do seu jeito!</span>
+                        <!-- Cauda do Balão de Fala -->
+                        <div class="absolute right-[-10px] bottom-4 w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[12px] border-l-white"></div>
+                    </div>
+                     <!-- Mascote Esquilo Amigável com Balão de Fala -->
+               <img src="mascote.png" alt="Mascote Esquilo" class="w-20 h-20 md:w-24 md:h-24 drop-shadow-md">
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ESTÁGIO 2: /page (Editor de Decoração da Árvore) -->
+        <!-- ========================================== -->
+        <div id="stage-2" class="hidden relative w-full flex-1 flex flex-col lg:flex-row overflow-hidden transition-all duration-500">
+            
+            <!-- Painel Esquerdo / Tela: A Árvore Interativa -->
+            <div class="w-full lg:w-3/5 min-h-[480px] lg:min-h-full bg-[#181818] flex flex-col items-center justify-center p-4 relative border-b lg:border-b-0 lg:border-r border-gray-800">
+                
+                <h2 class="text-gray-300 font-fredoka text-lg md:text-xl mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-hand-pointer text-amber-400"></i>
+                    Clique em um círculo para colocar o enfeite!
+                </h2>
+
+                <!-- Contêiner da Árvore com Hotspots de Sobreposição -->
+                <div id="editor-tree-wrapper" class="relative w-[320px] sm:w-[420px] md:w-[480px] aspect-[5/6]">
+                    
+                    <!-- Árvore SVG Base -->
+                    <svg viewBox="0 0 500 600" class="w-full h-full drop-shadow-xl select-none">
+                        <!-- Tronco -->
+                        <path d="M220,440 L280,440 L295,570 C295,580 270,590 250,590 C230,590 205,580 205,570 Z" fill="#5A3A22" stroke="#3D2514" stroke-width="6" />
+                        <!-- Camada Externa da Folhagem -->
+                        <path d="M250,30 C310,30 360,70 380,120 C430,130 470,180 470,240 C470,290 440,330 410,350 C440,380 440,430 400,460 C360,490 300,480 250,480 C200,480 140,490 100,460 C60,430 60,380 90,350 C60,330 30,290 30,240 C30,180 70,130 120,120 C140,70 190,30 250,30 Z" fill="#4B7A2B" stroke="#32531B" stroke-width="8" />
+                        <!-- Folhagem Interna -->
+                        <path d="M250,45 C195,45 155,80 140,125 C95,135 60,180 60,235 C60,280 85,315 115,335 C88,360 88,405 120,430 C155,455 205,445 250,445 C295,445 345,455 380,430 C412,405 412,360 385,335 C415,315 440,280 440,235 C440,180 405,135 360,125 C345,80 305,45 250,45 Z" fill="#5B9335" />
+                        <!-- Aglomerados -->
+                        <circle cx="210" cy="120" r="45" fill="#6ba93e" />
+                        <circle cx="290" cy="130" r="50" fill="#6ba93e" />
+                        <circle cx="160" cy="220" r="55" fill="#6ba93e" />
+                        <circle cx="340" cy="210" r="60" fill="#6ba93e" />
+                        <circle cx="250" cy="260" r="75" fill="#6ba93e" />
+                        <circle cx="170" cy="350" r="65" fill="#6ba93e" />
+                        <circle cx="330" cy="350" r="70" fill="#6ba93e" />
+                    </svg>
+
+                    <!-- ESPAÇOS DE HOTSPOT BRANCO DINÂMICOS (Posicionados em porcentagem) -->
+                    <!-- Espaço 1 (Centro Superior) -->
+                    <div data-slot-id="1" onclick="openOrnamentSelector(1)" class="slot-circle absolute top-[12%] left-[45%] w-10 h-10 md:w-12 md:h-12 bg-white rounded-full border-2 border-gray-300 shadow-lg cursor-pointer flex items-center justify-center transition-all hover:scale-125 z-20 hotspot-pulse">
+                        <div class="slot-content w-full h-full flex items-center justify-center p-1"></div>
+                    </div>
+                    <!-- Espaço 2 (Superior Esquerdo) -->
+                    <div data-slot-id="2" onclick="openOrnamentSelector(2)" class="slot-circle absolute top-[25%] left-[25%] w-10 h-10 md:w-12 md:h-12 bg-white rounded-full border-2 border-gray-300 shadow-lg cursor-pointer flex items-center justify-center transition-all hover:scale-125 z-20 hotspot-pulse">
+                        <div class="slot-content w-full h-full flex items-center justify-center p-1"></div>
+                    </div>
+                    <!-- Espaço 3 (Superior Direito) -->
+                    <div data-slot-id="3" onclick="openOrnamentSelector(3)" class="slot-circle absolute top-[28%] left-[68%] w-10 h-10 md:w-12 md:h-12 bg-white rounded-full border-2 border-gray-300 shadow-lg cursor-pointer flex items-center justify-center transition-all hover:scale-125 z-20 hotspot-pulse">
+                        <div class="slot-content w-full h-full flex items-center justify-center p-1"></div>
+                    </div>
+                    <!-- Espaço 4 (Médio Esquerdo) -->
+                    <div data-slot-id="4" onclick="openOrnamentSelector(4)" class="slot-circle absolute top-[43%] left-[18%] w-10 h-10 md:w-12 md:h-12 bg-white rounded-full border-2 border-gray-300 shadow-lg cursor-pointer flex items-center justify-center transition-all hover:scale-125 z-20 hotspot-pulse">
+                        <div class="slot-content w-full h-full flex items-center justify-center p-1"></div>
+                    </div>
+                    <!-- Espaço 5 (Centro) -->
+                    <div data-slot-id="5" onclick="openOrnamentSelector(5)" class="slot-circle absolute top-[45%] left-[47%] w-11 h-11 md:w-14 md:h-14 bg-white rounded-full border-2 border-gray-300 shadow-lg cursor-pointer flex items-center justify-center transition-all hover:scale-125 z-20 hotspot-pulse">
+                        <div class="slot-content w-full h-full flex items-center justify-center p-1"></div>
+                    </div>
+                    <!-- Espaço 6 (Médio Direito) -->
+                    <div data-slot-id="6" onclick="openOrnamentSelector(6)" class="slot-circle absolute top-[48%] left-[75%] w-10 h-10 md:w-12 md:h-12 bg-white rounded-full border-2 border-gray-300 shadow-lg cursor-pointer flex items-center justify-center transition-all hover:scale-125 z-20 hotspot-pulse">
+                        <div class="slot-content w-full h-full flex items-center justify-center p-1"></div>
+                    </div>
+                    <!-- Espaço 7 (Inferior Esquerdo) -->
+                    <div data-slot-id="7" onclick="openOrnamentSelector(7)" class="slot-circle absolute top-[64%] left-[30%] w-11 h-11 md:w-13 md:h-13 bg-white rounded-full border-2 border-gray-300 shadow-lg cursor-pointer flex items-center justify-center transition-all hover:scale-125 z-20 hotspot-pulse">
+                        <div class="slot-content w-full h-full flex items-center justify-center p-1"></div>
+                    </div>
+                    <!-- Espaço 8 (Inferior Direito) -->
+                    <div data-slot-id="8" onclick="openOrnamentSelector(8)" class="slot-circle absolute top-[66%] left-[62%] w-11 h-11 md:w-13 md:h-13 bg-white rounded-full border-2 border-gray-300 shadow-lg cursor-pointer flex items-center justify-center transition-all hover:scale-125 z-20 hotspot-pulse">
+                        <div class="slot-content w-full h-full flex items-center justify-center p-1"></div>
+                    </div>
+                    <!-- Espaço 9 (Espaço Especial no Tronco/Parte Inferior Oval) -->
+                    <div data-slot-id="9" onclick="openOrnamentSelector(9)" class="slot-circle absolute top-[75%] left-[44%] w-12 h-16 md:w-14 md:h-20 bg-white rounded-full border-2 border-gray-300 shadow-lg cursor-pointer flex items-center justify-center transition-all hover:scale-110 z-20 hotspot-pulse">
+                        <div class="slot-content w-full h-full flex items-center justify-center p-1"></div>
+                    </div>
+
+                </div>
+
+            </div> 
+         
+        
+            <!-- Painel Direito: Paleta e Upload de Galeria -->
+            <div id="stage2" class="w-full lg:w-2/5 p-6 bg-[#252525] flex flex-col justify-between overflow-y-auto">
+                <div class="space-y-6">
+                    
+                    <!-- Banner de Status do Espaço Ativo -->
+                    <div class="bg-[#181818] p-4 rounded-xl border border-gray-700 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span class="text-sm font-semibold text-gray-300">
+                                Posição selecionada: <span id="current-slot-label" class="text-amber-400 font-bold">Nenhuma (Clique em uma bola branca)</span>
+                            </span>
+                        </div>
+                        <button id="btn-remove-ornament" onclick="removeCurrentOrnament()" class="hidden text-xs bg-red-600/80 hover:bg-red-600 text-white px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1">
+                            <i class="fa-solid fa-trash-can"></i> Remover
+                        </button>
+                    </div>
+
+                    <!-- Botão de Upload de Foto Personalizada -->
+                    <div>
+                        <input type="file" id="user-photo-input" accept="image/*" class="hidden" onchange="handleUserPhotoUpload(event)">
+                        <button onclick="triggerFileUpload()" class="w-full bg-[#363636] hover:bg-[#424242] text-gray-100 font-bold py-4 px-6 rounded-2xl border border-gray-600 shadow-md flex items-center justify-center gap-3 transition-all hover:border-amber-400 group cursor-pointer">
+                            <div class="w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-image text-lg"></i>
+                            </div>
+                            <span class="text-sm md:text-base">Adicione algo da sua galeria</span>
+                        </button>
+                    </div>
+
+                    <!-- Grade da Paleta de Enfeites Pré-definidos -->
+                    <div>
+                        <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-boxes-packing text-amber-400"></i>
+                            Ou escolha um enfeite de Natal:
+                        </h3>
+                        <div class="grid grid-cols-3 gap-3 bg-[#1c1c1c] p-4 rounded-2xl border border-gray-800" id="preset-palette-grid">
+                            <!-- Itens da paleta renderizados via Javascript -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Ação do Rodapé do Estágio 2: Botão Salvar Árvore -->
+                <div class="pt-6 mt-6 border-t border-gray-800">
+                    <button onclick="goToStage(3)" class="w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-fredoka text-xl py-4 rounded-2xl border-2 border-emerald-400 shadow-xl hover:shadow-2xl transition-all duration-200 flex items-center justify-center gap-3 cursor-pointer">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span>Salvar Árvore</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ESTÁGIO 3: /final (Apresentação e Captura de Tela) -->
+        <!-- ========================================== -->
+        <div id="stage-3" class="hidden relative w-full flex-1 flex flex-col justify-between items-center overflow-hidden transition-all duration-500">
+            <!-- Camada de Fundo do Céu/Campo (Mesma estética do Estágio 1) -->
+            <div class="absolute inset-0 z-0 flex flex-col">
+                <div class="h-[60%] w-full bg-gradient-to-b from-[#6b7c85] via-[#85959e] to-[#99a6ad]"></div>
+                <div class="h-[40%] w-full bg-[#46612b] border-t-8 border-[#3d5425]"></div>
+            </div>
+
+            <!-- Barra de Ferramentas Superior de Câmera / Captura de Tela -->
+            <div class="relative z-30 w-full p-4 flex justify-between items-center">
+                <button onclick="goToStage(2)" class="bg-black/50 hover:bg-black/70 text-white font-semibold px-4 py-2 rounded-xl backdrop-blur-md border border-white/20 transition-all flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar a editar
+                </button>
+
+                <!-- Botão de Captura de Tela / Câmera -->
+                <button onclick="takeScreenshot()" title="Tirar Foto da Árvore" class="bg-gray-800/80 hover:bg-gray-900 text-white p-3.5 rounded-2xl border-2 border-gray-400/50 shadow-2xl backdrop-blur-md transition-all hover:scale-110 active:scale-95 flex items-center gap-2 group cursor-pointer">
+                    <div class="relative w-7 h-7 flex items-center justify-center">
+                        <i class="fa-solid fa-camera text-2xl text-amber-300 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider pr-1">Tirar Foto</span>
+                </button>
+            </div>
+
+            <!-- Área Central Alvo de Captura de Tela (Árvore + Enfeites) -->
+            <div id="final-tree-capture-area" class="relative z-10 flex-1 flex items-center justify-center p-4 w-full max-w-xl">
+                
+                <div id="final-tree-container" class="relative w-[340px] sm:w-[420px] md:w-[480px] aspect-[5/6]">
+                    <!-- Árvore SVG Base -->
+                    <svg viewBox="0 0 500 600" class="w-full h-full drop-shadow-2xl">
+                        <path d="M220,440 L280,440 L295,570 C295,580 270,590 250,590 C230,590 205,580 205,570 Z" fill="#5A3A22" stroke="#3D2514" stroke-width="6" />
+                        <path d="M250,30 C310,30 360,70 380,120 C430,130 470,180 470,240 C470,290 440,330 410,350 C440,380 440,430 400,460 C360,490 300,480 250,480 C200,480 140,490 100,460 C60,430 60,380 90,350 C60,330 30,290 30,240 C30,180 70,130 120,120 C140,70 190,30 250,30 Z" fill="#4B7A2B" stroke="#32531B" stroke-width="8" />
+                        <path d="M250,45 C195,45 155,80 140,125 C95,135 60,180 60,235 C60,280 85,315 115,335 C88,360 88,405 120,430 C155,455 205,445 250,445 C295,445 345,455 380,430 C412,405 412,360 385,335 C415,315 440,280 440,235 C440,180 405,135 360,125 C345,80 305,45 250,45 Z" fill="#5B9335" />
+                        <circle cx="210" cy="120" r="45" fill="#6ba93e" />
+                        <circle cx="290" cy="130" r="50" fill="#6ba93e" />
+                        <circle cx="160" cy="220" r="55" fill="#6ba93e" />
+                        <circle cx="340" cy="210" r="60" fill="#6ba93e" />
+                        <circle cx="250" cy="260" r="75" fill="#6ba93e" />
+                        <circle cx="170" cy="350" r="65" fill="#6ba93e" />
+                        <circle cx="330" cy="350" r="70" fill="#6ba93e" />
+                    </svg>
+
+                    <!-- Contêiner de Enfeites Renderizados para o Estágio 3 -->
+                    <div id="final-ornaments-layer" class="absolute inset-0 z-20 pointer-events-none"></div>
+                    <rect x="7" y="7" width="184" height="88"
+    rx="5" fill="url(#brickColor)"
+    stroke="#55271e" stroke-width="3"/>
+                </div>
+
+            </div>
+  
+                    <!-- Avatar de Ícone SVG do Esquilo -->
+                    <div class="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 drop-shadow-md">
+                        <img src="mascote.png" alt="Mascote Esquilo" class="esquilo">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Modal de Notificação Toast -->
+    <div id="toast-msg" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-900 text-white border border-gray-700 px-6 py-3 rounded-xl shadow-2xl transition-opacity duration-300 opacity-0 pointer-events-none z-50 text-sm font-semibold flex items-center gap-2">
+        <i class="fa-solid fa-circle-info text-amber-400"></i>
+        <span id="toast-text"></span>
+    </div>
+
+    
+<script src="script.js"></script>
+</body>
+</html>
